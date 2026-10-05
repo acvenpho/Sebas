@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth select-none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Mis 15 Años | Galería Oficial</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Outfit, Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,800;0,900;1,900&family=Outfit:ital,wght@0,700;0,800;0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              spider: {
+                red: "#E50914",
+                redBright: "#FF1E27",
+                redDark: "#8C0000",
+                blueDark: "#080E21",
+                blueCobalt: "#0D1B3A",
+                blueElectric: "#0055FF",
+                blueNeon: "#00A2FF",
+                cardBg: "rgba(13, 27, 58, 0.75)",
+                cardBorder: "rgba(0, 162, 255, 0.25)",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Outfit", "Montserrat", "sans-serif"],
+              cinzel: ["Cinzel", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Deshabilitar selección global y llamadas táctiles */
+      * {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Prevenir guardado o arrastre de imágenes */
+      img {
+        pointer-events: none !important;
+        -webkit-user-drag: none !important;
+      }
+
+      /* Capa transparente de protección sobre las fotos */
+      .photo-shield {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0);
+      }
+
+      /* Fondo dinámico Spider-Man: Gradiente Azul Rey & Destellos Rojos */
+      body {
+        background:
+          radial-gradient(
+            circle at 15% 15%,
+            rgba(255, 30, 39, 0.25) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 85%,
+            rgba(0, 162, 255, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(13, 27, 58, 0.95) 0%,
+            rgba(8, 14, 33, 1) 100%
+          );
+        background-attachment: fixed;
+        color: #e2e8f0;
+      }
+
+      /* Canvas de telaraña imperceptible en el fondo */
+      #spider-web-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 10.06;
+      }
+
+      /* Custom Scrollbar estilo Spider-Man */
+      ::-webkit-scrollbar {
+        width: 7px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #080e21;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00a2ff;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ff1e27;
+      }
+
+      /* Capa de protección pantalla negra instantánea */
+      #blackout-overlay {
+        transition: opacity 0.15s ease-in-out;
+      }
+    </style>
+  </head>
+  <body
+    class="font-sans min-h-screen antialiased flex flex-col relative overflow-x-hidden"
+  >
+    <!-- Canvas de Telaraña Sutil en Fondo -->
+    <canvas id="spider-web-canvas"></canvas>
+
+    <!-- Overlay Negro Anti-Captura / Pérdida de Foco -->
+    <div
+      id="blackout-overlay"
+      class="fixed inset-0 bg-black z-[9999] hidden flex flex-col items-center justify-center text-center p-6 space-y-4"
+    >
+      <i
+        class="fa-solid fa-shield-halved text-spider-redBright text-5xl animate-pulse"
+      ></i>
+      <h2 class="text-xl font-heading font-bold text-white tracking-wider">
+        CONTENIDO PROTEGIDO
+      </h2>
+      <p class="text-xs text-gray-400 max-w-sm">
+        Las capturas de pantalla y la copia de imágenes están deshabilitadas por
+        privacidad. Regresa a la ventana para continuar navegando.
+      </p>
+    </div>
+
+    <!-- Header / Barra Superior -->
+    <header
+      class="sticky top-0 z-40 backdrop-blur-md bg-spider-blueDark/80 border-b border-spider-blueNeon/30 shadow-lg"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-9 h-9 rounded-full bg-spider-red/20 border border-spider-redBright/60 flex items-center justify-center text-spider-redBright shadow-[0_0_12px_rgba(255,30,39,0.5)]"
+          >
+            <i class="fa-solid fa-spider text-base"></i>
+          </div>
+          <span
+            class="font-heading font-black text-lg sm:text-xl tracking-wider text-white"
+          >
+            SEBASTHIAN ARNAUDEZ MANZANARE<span class="text-spider-redBright">
+              15 años</span
+            >
+          </span>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <div
+            class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-spider-blueCobalt/90 border border-spider-redBright/40 text-gray-200 flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-lock text-spider-redBright text-xs"></i>
+            <span class="hidden sm:inline">Galería Privada</span>
+          </div>
+          <div
+            class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-spider-blueCobalt/90 border border-spider-blueNeon/50 text-spider-blueNeon shadow-[0_0_10px_rgba(0,162,255,0.3)]"
+          >
+            <span id="header-photo-count">Fotos</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Banner Principal con Foto del Festejado -->
+    <section
+      class="relative overflow-hidden py-10 lg:py-14 border-b border-spider-blueNeon/30"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Info Festejado -->
+          <div
+            class="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
+          >
+            <div
+              class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-spider-red/20 border border-spider-redBright/50 text-spider-redBright text-xs font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(255,30,39,0.3)]"
+            >
+              <i class="fa-solid fa-mask text-xs"></i>
+              <span>Celebración Especial de 15 Años</span>
+            </div>
+
+            <!-- Título de Tipografía Mejorada -->
+            <div class="space-y-1">
+              <span
+                class="block text-xs uppercase tracking-[0.3em] text-spider-blueNeon font-bold"
+                >Galería Oficial</span
+              >
+              <h1
+                class="font-heading text-5xl sm:text-7xl lg:text-8xl font-black italic tracking-tight uppercase leading-none drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)]"
+              >
+                MIS
+                <span
+                  class="text-transparent bg-clip-text bg-gradient-to-r from-spider-redBright via-red-500 to-spider-blueNeon"
+                  >15 AÑOS</span
+                >
+              </h1>
+            </div>
+
+            <!-- Mensaje de Bienvenida Centrado -->
+            <div
+              class="w-full max-w-xl mx-auto lg:mx-0 p-4 rounded-2xl bg-spider-blueCobalt/80 border border-spider-blueNeon/30 backdrop-blur-md shadow-xl text-center"
+            >
+              <p
+                class="text-sm sm:text-base text-gray-200 font-medium leading-relaxed"
+              >
+                Bienvenido a la galería de fotos oficial. Toca cualquier
+                miniatura para ver la foto ampliada.
+              </p>
+            </div>
+
+            <div
+              class="pt-1 flex items-center justify-center lg:justify-start space-x-6 text-gray-300 text-xs sm:text-sm"
+            >
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-camera text-spider-redBright"></i>
+                <span class="font-semibold">Fotos</span>
+              </div>
+              <div class="w-1.5 h-1.5 rounded-full bg-spider-blueNeon"></div>
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-user-shield text-spider-blueNeon"></i>
+                <span class="font-semibold">Protección Anti-copia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Foto Principal -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative group w-full max-w-xs sm:max-w-sm">
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-spider-redBright via-spider-blueNeon to-spider-blueElectric rounded-2xl blur-md opacity-50 group-hover:opacity-85 transition duration-500"
+              ></div>
+
+              <div
+                class="relative rounded-2xl bg-spider-blueCobalt border border-spider-blueNeon/40 p-3 shadow-2xl overflow-hidden backdrop-blur-xl"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-xl overflow-hidden bg-spider-blueDark"
+                >
+                  <img
+                    src="C:\Users\User\Desktop\images\0001.JPG"
+                    alt="Foto de 15 años"
+                    class="w-full h-full object-cover object-center"
+                  />
+                  <div class="photo-shield"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-spider-blueDark via-transparent to-transparent"
+                  ></div>
+
+                  <div class="absolute bottom-3 left-3 right-3 text-left">
+                    <span
+                      class="text-[10px] uppercase tracking-widest text-spider-redBright font-bold"
+                      >Festejado</span
+                    >
+                    <h2
+                      class="text-xl font-black text-white font-heading tracking-wide"
+                    >
+                      Sebasthian Arnaudez Manzanare
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenido Principal de la Galería -->
+    <main
+      class="flex-grow py-8 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full z-10 relative"
+    >
+      <div
+        class="flex items-center justify-between pb-4 mb-4 border-b border-spider-blueNeon/30"
+      >
+        <h2
+          class="text-sm font-heading font-bold text-gray-200 tracking-wider flex items-center space-x-2"
+        >
+          <i class="fa-solid fa-border-all text-spider-redBright"></i>
+          <span>GALERÍA COMPLETA</span>
+        </h2>
+        <span
+          class="text-xs text-spider-blueNeon font-mono"
+          id="rendered-counter"
+          >Cargando fotografías...</span
+        >
+      </div>
+
+      <!-- Grid de 6 filas/columnas en PC y responsivo en celulares -->
+      <div
+        id="gallery-grid"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3.5"
+      >
+        <!-- Las fotos se cargan dinámicamente aquí mediante JavaScript -->
+      </div>
+
+      <!-- Indicador de Carga al hacer Scroll Infinito -->
+      <div
+        id="loading-indicator"
+        class="py-12 text-center flex flex-col items-center justify-center space-y-3"
+      >
+        <div
+          class="w-9 h-9 border-2 border-spider-blueNeon border-t-spider-redBright rounded-full animate-spin"
+        ></div>
+        <span class="text-xs text-gray-400">Cargando más fotos...</span>
+      </div>
+    </main>
+
+    <!-- Modal Visor Ampliado (Lightbox) -->
+    <div
+      id="lightbox-modal"
+      class="fixed inset-0 z-50 hidden bg-spider-blueDark/95 backdrop-blur-2xl flex flex-col justify-between p-3 sm:p-6 transition-opacity duration-200 opacity-0"
+      tabindex="-1"
+    >
+      <!-- Top Bar del Lightbox -->
+      <div
+        class="flex items-center justify-between text-white border-b border-spider-blueNeon/30 pb-3 max-w-6xl mx-auto w-full"
+      >
+        <div class="flex items-center space-x-3">
+          <span
+            id="lightbox-counter"
+            class="text-xs font-bold tracking-wider px-4 py-1.5 rounded-full bg-spider-blueCobalt border border-spider-blueNeon/50 text-spider-blueNeon shadow-md"
+          >
+            Foto #1
+          </span>
+        </div>
+
+        <!-- Botón Cerrar -->
+        <button
+          id="close-lightbox"
+          aria-label="Cerrar visor"
+          class="w-9 h-9 rounded-full bg-spider-blueCobalt border border-spider-redBright/50 hover:border-spider-redBright text-gray-200 hover:text-white transition duration-200 flex items-center justify-center shadow-lg"
+        >
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <!-- Contenedor Imagen Ampliada -->
+      <div
+        class="relative flex-grow flex items-center justify-center my-3 overflow-hidden"
+        id="lightbox-touch-area"
+      >
+        <!-- Flecha Anterior -->
+        <button
+          id="prev-btn"
+          aria-label="Foto anterior"
+          class="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-spider-blueCobalt/90 border border-spider-blueNeon/50 hover:border-spider-blueNeon text-white transition duration-200 flex items-center justify-center shadow-2xl"
+        >
+          <i class="fa-solid fa-chevron-left text-base"></i>
+        </button>
+
+        <!-- Imagen Lightbox protegida -->
+        <div
+          class="relative max-w-5xl max-h-[82vh] flex items-center justify-center p-2"
+        >
+          <img
+            id="lightbox-img"
+            src=""
+            alt="Imagen Ampliada"
+            class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border border-spider-blueNeon/40"
+          />
+          <div class="photo-shield"></div>
+        </div>
+
+        <!-- Flecha Siguiente -->
+        <button
+          id="next-btn"
+          aria-label="Foto siguiente"
+          class="absolute right-2 sm:right-4 z-30 w-11 h-11 rounded-full bg-spider-blueCobalt/90 border border-spider-blueNeon/50 hover:border-spider-blueNeon text-white transition duration-200 flex items-center justify-center shadow-2xl"
+        >
+          <i class="fa-solid fa-chevron-right text-base"></i>
+        </button>
+      </div>
+
+      <!-- Footer Modal -->
+      <div
+        class="text-center text-xs text-gray-400 max-w-6xl mx-auto w-full border-t border-spider-blueNeon/20 pt-2.5 flex flex-col sm:flex-row items-center justify-between gap-1.5"
+      >
+        <span class="text-spider-redBright font-semibold">
+          Mis 15 Años - Sebasthian Arnaudez Manzanare
+        </span>
+        <span class="text-gray-400 hidden sm:inline">
+          Protección de imagen activada • Desliza o usa las flechas para navegar
+        </span>
+      </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer
+      class="bg-spider-blueDark border-t border-spider-blueNeon/20 py-8 text-center text-xs text-gray-400 z-10 relative"
+    >
+      <div class="max-w-7xl mx-auto px-4 space-y-2">
+        <div
+          class="flex items-center justify-center space-x-2 text-spider-redBright"
+        >
+          <i class="fa-solid fa-spider"></i>
+          <span
+            class="font-heading font-bold text-gray-200 tracking-widest uppercase"
+            >Sebasthian 15 Años</span
+          >
+        </div>
+        <p>
+          © 2026 Todos los derechos reservados. Fotografías protegidas contra
+          copia sin autorización.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script Principal JavaScript e Instrucciones de Reemplazo -->
+    <script>
+      // ==============================================================================
+      // CONFIGURACIÓN GENERAL
+      // ==============================================================================
+      const TOTAL_PHOTOS = 144; // Total de fotos registradas
+      const BATCH_SIZE = 144; // Carga de imágenes por bloque
+      let currentlyRendered = 0;
+      let currentLightboxIndex = 1;
+
+      // ==============================================================================
+      // FUNCIÓN QUE GENERA LA RUTA DE TUS FOTOS LOCALES
+      // ==============================================================================
+      function getPhotoUrl(photoNumber, highRes = false) {
+        // Formatea el número a 4 dígitos con ceros a la izquierda (ej: 1 -> "0001", 12 -> "0012")
+        const formattedNumber = String(photoNumber).padStart(4, "0");
+
+        // Apunta directamente a tu carpeta local de escritorio
+        return `C:/Users/User/Desktop/images/${formattedNumber}.JPG`;
+      }
+
+      // Elementos DOM
+      const galleryGrid = document.getElementById("gallery-grid");
+      const loadingIndicator = document.getElementById("loading-indicator");
+      const renderedCounter = document.getElementById("rendered-counter");
+      const headerPhotoCount = document.getElementById("header-photo-count");
+      const blackoutOverlay = document.getElementById("blackout-overlay");
+
+      // Lightbox DOM
+      const lightboxModal = document.getElementById("lightbox-modal");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCounter = document.getElementById("lightbox-counter");
+      const closeLightboxBtn = document.getElementById("close-lightbox");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+
+      // --- 1. DIBUJAR TELARAÑA SUTIL EN EL FONDO ---
+      function initSpiderWebCanvas() {
+        const canvas = document.getElementById("spider-web-canvas");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          drawWeb();
+        }
+
+        function drawWeb() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = "#00A2FF";
+          ctx.lineWidth = 0.5;
+
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 3;
+          const maxRadius = Math.max(canvas.width, canvas.height);
+          const numRays = 16;
+          const numRings = 12;
+
+          // Rayos radiales
+          for (let i = 0; i < numRays; i++) {
+            const angle = (i * 2 * Math.PI) / numRays;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(
+              centerX + Math.cos(angle) * maxRadius,
+              centerY + Math.sin(angle) * maxRadius,
+            );
+            ctx.stroke();
+          }
+
+          // Anillos de la red
+          for (let r = 1; r <= numRings; r++) {
+            const radius = (r / numRings) * (maxRadius * 0.7);
+            ctx.beginPath();
+            for (let i = 0; i <= numRays; i++) {
+              const angle = (i * 2 * Math.PI) / numRays;
+              const x = centerX + Math.cos(angle) * radius;
+              const y = centerY + Math.sin(angle) * radius;
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+      }
+
+      // --- 2. PROTECCIÓN ANTI-CAPTURA & ANTI-COPIA ---
+      function initProtections() {
+        function showBlackout() {
+          blackoutOverlay.classList.remove("hidden");
+        }
+        function hideBlackout() {
+          blackoutOverlay.classList.add("hidden");
+        }
+
+        window.addEventListener("blur", showBlackout);
+        window.addEventListener("focus", hideBlackout);
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            showBlackout();
+          } else {
+            hideBlackout();
+          }
+        });
+
+        document.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          return false;
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "PrintScreen" || e.keyCode === 44) {
+            showBlackout();
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText("");
+            }
+            setTimeout(hideBlackout, 2000);
+            e.preventDefault();
+            return false;
+          }
+
+          if (
+            e.key === "F12" ||
+            (e.ctrlKey &&
+              e.shiftKey &&
+              (e.key === "I" || e.key === "J" || e.key === "C"))
+          ) {
+            e.preventDefault();
+            return false;
+          }
+
+          if (
+            e.ctrlKey &&
+            (e.key === "u" ||
+              e.key === "U" ||
+              e.key === "s" ||
+              e.key === "S" ||
+              e.key === "p" ||
+              e.key === "P")
+          ) {
+            e.preventDefault();
+            return false;
+          }
+
+          if (
+            e.metaKey &&
+            e.shiftKey &&
+            (e.key === "3" || e.key === "4" || e.key === "5")
+          ) {
+            showBlackout();
+            setTimeout(hideBlackout, 2000);
+            e.preventDefault();
+            return false;
+          }
+        });
+
+        document.addEventListener("dragstart", (e) => e.preventDefault());
+      }
+
+      // --- 3. RENDERIZADO PROGRESIVO DE FOTOS ---
+      function renderMorePhotos() {
+        if (currentlyRendered >= TOTAL_PHOTOS) {
+          loadingIndicator.classList.add("hidden");
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        const nextBatchLimit = Math.min(
+          currentlyRendered + BATCH_SIZE,
+          TOTAL_PHOTOS,
+        );
+
+        for (let i = currentlyRendered + 1; i <= nextBatchLimit; i++) {
+          const photoNum = i;
+          const card = document.createElement("div");
+          card.className =
+            "group relative aspect-square rounded-xl bg-spider-blueCobalt/80 border border-spider-blueNeon/30 overflow-hidden cursor-pointer transition-all duration-300 hover:border-spider-redBright hover:shadow-lg hover:shadow-spider-redBright/30 backdrop-blur-sm";
+
+          card.innerHTML = `
+        <img 
+            src="${getPhotoUrl(photoNum)}" 
+            alt="Foto #${photoNum}" 
+            loading="lazy"
+            class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+        />
+        <div class="photo-shield"></div>
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-spider-blueDark/95 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-2 z-20">
+            <p class="text-[11px] font-bold text-white">Foto #${photoNum}</p>
+        </div>
+
+        <div class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded bg-spider-blueDark/90 backdrop-blur border border-spider-blueNeon/40 text-[10px] text-spider-blueNeon font-mono font-bold z-20 shadow">
+            #${photoNum}
+        </div>
+      `;
+
+          card.addEventListener("click", () => {
+            openLightbox(photoNum);
+          });
+
+          fragment.appendChild(card);
+        }
+
+        galleryGrid.appendChild(fragment);
+        currentlyRendered = nextBatchLimit;
+        renderedCounter.textContent = `Mostrando 1 a ${currentlyRendered} de ${TOTAL_PHOTOS} fotos`;
+
+        if (currentlyRendered >= TOTAL_PHOTOS) {
+          loadingIndicator.classList.add("hidden");
+        }
+      }
+
+      // Scroll Infinito
+      function setupInfiniteScroll() {
+        window.addEventListener("scroll", () => {
+          if (
+            window.innerHeight + window.scrollY >=
+            document.body.offsetHeight - 800
+          ) {
+            renderMorePhotos();
+          }
+        });
+      }
+
+      // --- 4. LIGHTBOX INTERACTIVO ---
+      function openLightbox(photoNumber) {
+        currentLightboxIndex = photoNumber;
+        updateLightbox();
+
+        lightboxModal.classList.remove("hidden");
+        setTimeout(() => {
+          lightboxModal.classList.remove("opacity-0");
+        }, 10);
+
+        document.body.style.overflow = "hidden";
+        lightboxModal.focus();
+      }
+
+      function updateLightbox() {
+        lightboxImg.src = getPhotoUrl(currentLightboxIndex, true);
+        lightboxCounter.textContent = `Foto #${currentLightboxIndex} de ${TOTAL_PHOTOS}`;
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.add("opacity-0");
+        setTimeout(() => {
+          lightboxModal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        }, 200);
+      }
+
+      function nextPhoto() {
+        currentLightboxIndex =
+          currentLightboxIndex >= TOTAL_PHOTOS ? 1 : currentLightboxIndex + 1;
+        updateLightbox();
+      }
+
+      function prevPhoto() {
+        currentLightboxIndex =
+          currentLightboxIndex <= 1 ? TOTAL_PHOTOS : currentLightboxIndex - 1;
+        updateLightbox();
+      }
+
+      // Gestos Táctiles (Swipe)
+      function setupTouchSwipe() {
+        const touchArea = document.getElementById("lightbox-touch-area");
+        let startX = 0;
+        let endX = 0;
+
+        touchArea.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.changedTouches[0].screenX;
+          },
+          { passive: true },
+        );
+
+        touchArea.addEventListener(
+          "touchend",
+          (e) => {
+            endX = e.changedTouches[0].screenX;
+            handleSwipe();
+          },
+          { passive: true },
+        );
+
+        function handleSwipe() {
+          const threshold = 40;
+          if (endX < startX - threshold) nextPhoto();
+          if (endX > startX + threshold) prevPhoto();
+        }
+      }
+
+      // Event Listeners Lightbox
+      closeLightboxBtn.addEventListener("click", closeLightbox);
+      nextBtn.addEventListener("click", nextPhoto);
+      prevBtn.addEventListener("click", prevPhoto);
+
+      lightboxModal.addEventListener("click", (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightboxModal.classList.contains("hidden")) {
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowRight") nextPhoto();
+          if (e.key === "ArrowLeft") prevPhoto();
+        }
+      });
+
+      // Inicialización
+      window.onload = function () {
+        headerPhotoCount.textContent = `${TOTAL_PHOTOS} Fotos`;
+        initSpiderWebCanvas();
+        initProtections();
+        renderMorePhotos();
+        setupInfiniteScroll();
+        setupTouchSwipe();
+      };
+    </script>
+  </body>
+</html>
